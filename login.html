@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnityNest</title>
+    <link rel="stylesheet" href="style1.css">
+    <script src="https://kit.fontawesome.com/2edfbc5391.js"crossorigin="anonymous"></script>
+    
+</head>
+<body>
+   <div class="page">
+       <div class="navbar">
+           <img src="https://static.vecteezy.com/system/resources/previews/025/255/374/non_2x/tree-people-and-home-beach-sun-set-logo-design-symbol-template-vector.jpg" class="logo" >
+           <h1>Unity<span style="font-family: 'Merienda',cursive;
+            color:#a6e1fa;">Nest</span></h1>
+           <nav>
+               <ul>
+                   <li><a href=""class="active">Home</a></li>
+                   <li><a href="#rules">Rules & Regulations</a></li>
+                </ul>
+                <a href="Adminlogin.php" class="btn">Admin Login</a>
+            </nav>
+           
+       </div>
+       <div class="row">
+        <div class="col-1">
+            <div class="slider-wrapper">
+                <div class="slider">
+                    <img src="https://www.commercialproperty.review/wp-content/uploads/2020/10/Godrej-Garden-City-Apartments-SG-Highway-Ahmedabad.jpg" id="slide1"  >
+                    <img src="https://media.istockphoto.com/id/1388026461/photo/apartment-buildings-in-a-residential-area.jpg?s=612x612&w=0&k=20&c=GCy56iiHP2PtU_NWXQ02lHAMCzAZehH15k_akMS17gs=" id="slide2">
+                    <img src="https://www.belvoir.co.uk/wp-content/uploads/2024/05/Flats-in-the-UK.jpeg" id="slide3">
+                 </div>
+                 <div class="slider-nav">
+                     <a href="#slide1"></a>
+                     <a href="#slide2"></a>
+                     <a href="#slide3"></a>
+                 </div>
+            </div>
+        </div>
+        <div class="col-2">
+           <div class="form-container">
+               <div class="form-btn">
+                   <span onclick="login()">Login</span>
+                   <span onclick="register()">Register</span>
+                   <hr id="indicator">
+                </div>
+                <form action="login.php" method="POST" id="Loginform">
+                    <!-- <label for="role">Select Role:</label> -->
+                    <div  class="select-group">
+                        <select name="role" id="role" required onchange="toggleFlatNoField()">
+                            <option value="">-- Select Role --</option>
+                            <option value="worker">Worker</option>
+                            <option value="rental">Rental</option>
+                        </select>
+                    </div>
+                
+                    <input type="text" placeholder="Username" name="username" required>
+                    <input type="email" placeholder="E-mail" name="email" required>
+                
+                    <div id="flatNoField">
+                        <input type="text" placeholder="Flat-No." name="flatno" required>
+                    </div>
+                
+                    <input type="password" placeholder="Password" name="password" required>
+                
+                    <button type="submit" class="btn-losi">Login</button><br>
+                    <a href="reset_password.php">Forgot Password?</a>
+                </form>
+                
+                <script>
+                    function toggleFlatNoField() {
+                        var role = document.getElementById("role").value;
+                        var flatNoField = document.getElementById("flatNoField");
+                
+                       
+                        if (role === "worker") {
+                            flatNoField.style.display = "none";
+                        } else {
+                            flatNoField.style.display = "block";
+                        }
+                    }
+                </script>
+                
+                
+                
+                <form action="register.php" method="POST" id="Regform" enctype="multipart/form-data">
+    
+                    <div class="select-group">
+                        <select name="role" id="role" required onchange="showFields(this.value)">
+                            <option value="">-- Select Role --</option>
+                            <option value="worker">Worker</option>
+                            <option value="owner">Owner</option>
+                            <option value="rental">Rental</option>
+                        </select>
+                    </div>
+                
+                    <div id="commonFields">
+                        <input type="text" placeholder="Full Name" name="username" required>
+                        <input type="email" placeholder="E-mail" name="email" required>
+                        <input type="password" placeholder="Password" name="password" required>
+                    </div>
+                
+                    <!-- Worker Fields -->
+                    <div id="workerFields" style="display: none;">
+                        <input type="text" placeholder="Job Role (e.g., Plumber, Electrician)" name="job_role">
+                        <input type="tel" placeholder="Mobile Number" name="worker_mobno">
+                        <label >Aadhaar Card :</label>
+                        <input type="file" name="aadhaar_doc" accept=".pdf,.jpg,.png"id="documentadd">
+                    </div>
+                
+                    <!-- Owner Fields -->
+                    <div id="ownerFields" style="display: none;">
+                        <input type="text" placeholder="Flat Number" name="flatno">
+                        <input type="tel" placeholder="Mobile Number" name="mobno">
+                        <input type="number" placeholder="Number of Family Members" name="fammem">
+                        <label>Property Document:</label>
+                        <input type="file" name="property_doc" accept=".pdf,.jpg,.png"id="documentadd">        
+                    </div>
+                
+                    <!-- Rental Fields -->
+                    <div id="rentalFields" style="display: none;">
+                        <input type="text" placeholder="Flat Number" name="rental_flatno">
+                        <input type="text" placeholder="Owner Name" name="owner_name">
+                        <input type="tel" placeholder="Mobile Number" name="rental_mobno">
+                        <label>Application Letter:</label>
+                        <input type="file" name="application_doc" accept=".pdf,.jpg,.png"id="documentadd">
+                    </div>
+                
+                    <button type="submit" class="btn-losi">Submit</button>
+                </form>
+                
+                <script>
+                    function showFields(role) {
+                        document.getElementById("workerFields").style.display = (role === "worker") ? "block" : "none";
+                        document.getElementById("ownerFields").style.display = (role === "owner") ? "block" : "none";
+                        document.getElementById("rentalFields").style.display = (role === "rental") ? "block" : "none";
+                    }
+                </script>
+                
+                                
+           </div>
+             
+        </div>
+    </div>
+   </div>
+     
+    <div id="rules">
+    <h1>Rules and Regulations</h1>
+     
+     <li>All users must create an account to access certain features of the website. A valid email address and strong password are required.</li>  
+     <li>Users must be at least 13 years old to register on the site. If under 18, parental consent is required.</li>
+     <li>Users must acknowledge the website’s privacy policy, which governs the collection and use of personal data.</li>
+     <li>All users must interact in a respectful, civil manner. Harassment, hate speech, bullying, or discriminatory behavior is strictly prohibited.</li>
+     <li>Every member of the society should park their vehicles in their respective allotted parking spaces only.</li> 
+     <li> Users are not allowed to post content that is pornographic, violent, abusive, or illegal.</li> 
+     <li>Users retain ownership of their content but grant the website a non-exclusive license to display, distribute, and modify the content as part of the service.</li> 
+     <li>Unsolicited advertising, spam, or promotional messages are prohibited. Users may not send mass messages or email without permission.</li>
+     <li>All users must adhere to the website’s community standards, which foster a safe and positive environment for all.</li>
+     <li>Residents must immediately report any damage to society property (walls, elevators, etc.). Repeated or intentional damage will be charged to the resident.</li> 
+     <li>Common areas, including gardens, hallways, and parking lots, must be used responsibly and kept clean. No personal belongings should be stored in these areas.</li> 
+     <li>Pets are allowed only if they are registered with the society. Pet owners must clean up after their pets and ensure they do not disturb other residents.</li> 
+     <li>Smoking is strictly prohibited in common areas (lobbies, elevators, etc.) and in areas that are not designated as smoking zones.</li> 
+     <li>The use of loudspeakers, musical instruments, or sound systems in individual apartments is prohibited, especially during late hours, unless it’s for society-approved events.</li> 
+     <li>The society committee members are elected every 2 years. All members are encouraged to participate in elections and in meetings.</li> 
+ </div>
+
+     
+    <hr>
+    <footer>
+        <div class="main-content">
+            <div class="left box">
+                <h2>About Us</h2>
+                <div class="content">
+                    <p>
+                        UnityNest is webapp  where society members can get all the updates related to their society. The members also get notified with notices and events held in society and can see information about members in society. Members can also post complaints regarding any issue in society. 
+                    </p>
+                </div>
+            </div>
+            <div class="center box adjust">
+                <div class="cen">
+                    <h2>Quick Links</h2>
+                    <ul>
+                        <li><a href="login.html" style=" color:#90e0ef">Home</a></li>
+                        <li><a href="#Loginform" style="color:#90e0ef">Login</a></li>
+                        <li><a href="#rules" style="color:#90e0ef">Rules and Regulations</a></li>
+                    </ul>
+                </div>  
+                
+            </div>
+            <div class="right box">
+                <h2>Address</h2>
+                <div class="content">
+                    <div class="place">
+                        <span class="fas fa-map-marker-alt"></span>
+                        <span class="text">Gec Bhavnagar-364002</span>
+                    </div>
+                    <div class="phone">
+                        <span class="fas fa-phone-alt"></span>
+                        <span class="text">+91 9999988888</span>
+                    </div>
+                    <div class="email">
+                        <span class="fas fa-envelope"></span>
+                        <span class="text">unitynest@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <h3>Copyright @2025|Designed with HTML,CSS,PHP.</h3>
+        </div>
+    </footer>
+   <script>
+       var Loginform=document.getElementById("Loginform")
+       var Regform=document.getElementById("Regform")
+       var indicator=document.getElementById("indicator")
+
+         function register(){
+            Regform.style.transform= "translateX(0px)";
+            Loginform.style.transform= "translateX(0px)";
+            indicator.style.transform= "translateX(80px)";
+
+         }
+         function login(){
+            Regform.style.transform= "translateX(300px)";
+            Loginform.style.transform= "translateX(300px)";
+            indicator.style.transform= "translateX(0px)";
+
+         }
+         
+   </script>
+</body>
+</html>
